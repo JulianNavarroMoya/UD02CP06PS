@@ -1,10 +1,11 @@
 package modelo;
 
 public class MemoriaArrayCompartida implements MemoriaFibonacci {
-    private final int[] fibonacci;
+    private final long[] fibonacci;
+    private int turno = 2;
 
     public MemoriaArrayCompartida(int n) {
-        this.fibonacci = new int[n + 1];
+        this.fibonacci = new long[n + 1];
         inicializarMemoria();
     }
 
@@ -18,22 +19,34 @@ public class MemoriaArrayCompartida implements MemoriaFibonacci {
     }
 
     @Override
-    public boolean estaCalculado(int indice) {
+    public synchronized boolean estaCalculado(int indice) {
         return fibonacci[indice] != -1;
     }
 
     @Override
-    public int getValor(int indice) {
+    public synchronized long getValor(int indice) {
         return fibonacci[indice];
     }
 
     @Override
-    public void setValor(int indice, int valor) {
+    public synchronized void setValor(int indice, long valor) {
         fibonacci[indice] = valor;
     }
 
     @Override
     public int getTamano() {
         return fibonacci.length - 1;
+    }
+
+// dos metodos añadidos de la MemoriaFibonacci
+
+    @Override
+    public synchronized int getTurno() {
+        return turno;
+    }
+
+    @Override
+    public synchronized void siguienteTurno() {
+        turno++;
     }
 }

@@ -19,9 +19,22 @@ public class TareaFibonacci implements Runnable {
         }
 
         // Cálculo y almacenamiento
-        int resultado = memoria.getValor(i - 1) + memoria.getValor(i - 2);
+        long resultado = memoria.getValor(i - 1) + memoria.getValor(i - 2);
         memoria.setValor(i, resultado);
 
+        // Espera el turno e imprime
+        while (memoria.getTurno() != i ){
+            try {
+                Thread.sleep(1);
+            }
+            catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return;
+            }
+        }
+
         System.out.println("Fibonacci " + i + ": " + resultado);
+        // Pasar el turno a la siguinete hebra
+        memoria.siguienteTurno();
     }
 }

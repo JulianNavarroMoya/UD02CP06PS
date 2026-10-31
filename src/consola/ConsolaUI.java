@@ -18,7 +18,7 @@ public class ConsolaUI {
         System.out.println(mensaje);
     }
 
-    public void mostrarResultadoFinal(int n, int resultado) {
+    public void mostrarResultadoFinal(int n, long resultado) {
         System.out.println("***************");
         System.out.println("FIBONACCI " + n + ": " + resultado);
     }

@@ -23,7 +23,7 @@ public class Main {
         gestor.ejecutarCalculo();
 
         // Salida de resultados
-        int resultadoFinal = memoria.getValor(n);
+        long resultadoFinal = memoria.getValor(n);
         ui.mostrarResultadoFinal(n, resultadoFinal);
 
         ui.cerrar();
